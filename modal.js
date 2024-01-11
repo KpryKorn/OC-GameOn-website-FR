@@ -1,6 +1,6 @@
 // ajoute ou suppr la classe "responsive" pour le menu de navigation
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  const x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -22,5 +22,9 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal form
+// ferme la modale
 closeBtn.addEventListener("click", () => (modalbg.style.display = "none"));
+
+// TODO: disable submit button if form is not valid
+// TODO: add error msg if form is not valid
+// TODO: add form validation for each input
