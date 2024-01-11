@@ -13,6 +13,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.getElementById("closeBtn");
+const submitBtn = document.getElementById("submitBtn");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -26,5 +27,7 @@ function launchModal() {
 closeBtn.addEventListener("click", () => (modalbg.style.display = "none"));
 
 // TODO: disable submit button if form is not valid
+
 // TODO: add error msg if form is not valid
 // TODO: add form validation for each input
+// TODO: save form data if validation fails
