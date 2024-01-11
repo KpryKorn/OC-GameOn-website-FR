@@ -1,3 +1,4 @@
+// ajoute ou suppr la classe "responsive" pour le menu de navigation
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {

@@ -18,6 +18,10 @@ body {
   margin-inline: auto;
 }
 
+ul {
+  list-style-type: none;
+}
+
 p {
   padding: 0.5vw;
 }
@@ -27,17 +31,19 @@ img {
 }
 
 .topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   overflow: hidden;
   margin: 3.5%;
 }
-.header-logo {
-  float: left;
-}
-.main-navbar {
-  float: right;
+
+.main-navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .topnav a {
-  float: left;
   display: block;
   color: #000000;
   text-align: center;
@@ -69,7 +75,6 @@ img {
     display: none;
   }
   .topnav a.icon {
-    float: right;
     display: block;
   }
 }
@@ -95,7 +100,6 @@ img {
     display: none;
   }
   .topnav a.icon {
-    float: right;
     display: block;
     margin-top: -15px;
   }
