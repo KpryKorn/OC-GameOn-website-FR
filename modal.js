@@ -17,6 +17,9 @@ const formData = document.querySelectorAll(".formData");
 const formConfirmationModal = document.getElementById("formConfirmationModal");
 
 const closeModalBtn = document.getElementById("closeModalBtn");
+const closeConfirmationModalBtn = document.getElementById(
+  "closeConfirmationModalBtn"
+);
 const submitBtn = document.getElementById("submitBtn");
 // TODO: add form elements
 
@@ -36,10 +39,13 @@ formContainer.addEventListener("submit", (e) => {
   e.preventDefault();
   modalbg.style.display = "none";
   formConfirmationModal.style.display = "block";
-  setTimeout(() => {
-    formConfirmationModal.style.display = "none";
-  }, 3000);
 });
+
+// fermer modale de confirmation
+closeConfirmationModalBtn.addEventListener(
+  "click",
+  () => (formConfirmationModal.style.display = "none")
+);
 
 // TODO: disable submit button if form is not valid
 
