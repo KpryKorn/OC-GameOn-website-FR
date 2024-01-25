@@ -16,7 +16,7 @@ const formContainer = document.getElementById("formContainer");
 const formData = document.querySelectorAll(".formData");
 const formConfirmationModal = document.getElementById("formConfirmationModal");
 
-const closeBtn = document.getElementById("closeBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
 const submitBtn = document.getElementById("submitBtn");
 // TODO: add form elements
 
@@ -29,7 +29,7 @@ function launchModal() {
 }
 
 // ferme la modale
-closeBtn.addEventListener("click", () => (modalbg.style.display = "none"));
+closeModalBtn.addEventListener("click", () => (modalbg.style.display = "none"));
 
 // ajouter confirmation quand le submit est réussi
 formContainer.addEventListener("submit", (e) => {
