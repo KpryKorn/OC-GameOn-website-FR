@@ -36,6 +36,9 @@
           <li>
             <a href="#"><span>Évènements passés</span></a>
           </li>
+          <!--
+            TODO: enlever onClick de l'HTML
+          -->
           <a
             href="javascript:void(0);"
             class="icon"
@@ -69,15 +72,22 @@
         <button class="btn-signup modal-btn">je m'inscris</button>
       </section>
 
+      <div class="confirmation-modal" id="formConfirmationModal">
+        <figure class="confirmation-modal__body">
+          <img src="Logo.png" alt="Logo GameOn" />
+          <figcaption>Merci pour votre participation!</figcaption>
+        </figure>
+      </div>
+
       <div class="bground">
         <div class="content">
           <span class="close" id="closeBtn"></span>
           <div class="modal-body">
             <form
               name="reserve"
+              id="formContainer"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
             >
               <div class="formData">
                 <label for="firstName">Prénom</label>
@@ -212,12 +222,7 @@
                   Je souhaite être prévenu des prochains évènements.
                 </label>
               </div>
-              <button
-                class="button btn-submit"
-                type="submit"
-                id="submitBtn"
-                disabled
-              >
+              <button class="button btn-submit" type="submit" id="submitBtn">
                 C'est parti
               </button>
             </form>

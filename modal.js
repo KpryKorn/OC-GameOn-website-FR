@@ -11,9 +11,14 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
+
+const formContainer = document.getElementById("formContainer");
 const formData = document.querySelectorAll(".formData");
+const formConfirmationModal = document.getElementById("formConfirmationModal");
+
 const closeBtn = document.getElementById("closeBtn");
 const submitBtn = document.getElementById("submitBtn");
+// TODO: add form elements
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -25,6 +30,16 @@ function launchModal() {
 
 // ferme la modale
 closeBtn.addEventListener("click", () => (modalbg.style.display = "none"));
+
+// ajouter confirmation quand le submit est réussi
+formContainer.addEventListener("submit", (e) => {
+  e.preventDefault();
+  modalbg.style.display = "none";
+  formConfirmationModal.style.display = "block";
+  setTimeout(() => {
+    formConfirmationModal.style.display = "none";
+  }, 3000);
+});
 
 // TODO: disable submit button if form is not valid
 
