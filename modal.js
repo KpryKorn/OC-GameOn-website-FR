@@ -1,19 +1,10 @@
-// ajoute ou suppr la classe "responsive" pour le menu de navigation
-function editNav() {
-  const x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
 /** ------------------------ DOM ELEMENTS ------------------------ **/
+const burgerMenuBtn = document.getElementById("burgerMenuBtn");
+
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 
 const formContainer = document.getElementById("formContainer");
-const formData = document.querySelectorAll(".formData");
 const formConfirmationModal = document.getElementById("formConfirmationModal");
 const formErrorMsg = document.getElementById("formNotValid");
 
@@ -23,23 +14,45 @@ const closeConfirmationModalBtn = document.getElementById(
 );
 const submitBtn = document.getElementById("submitBtn");
 
+/** ------------------------ FORM DATA VALUES ------------------------ **/
+const formElements = {
+  firstName: document.getElementById("firstName"),
+  lastName: document.getElementById("lastName"),
+  email: document.getElementById("email"),
+  quantity: document.getElementById("quantity"),
+  location: document.querySelector('input[name="location"]'),
+};
+
 /** ------------------------ FORM VALIDATION ------------------------ **/
 let formIsValid = false;
-submitBtn.disabled = true;
+
+// TODO: logique à retravailler
+function validateForm() {
+  // check tous les éléments de l'objet formElements et return true si tous les inputs sont pas vides
+  formIsValid = Object.values(formElements).every((element) => {
+    if (element.value !== "") return true;
+  });
+}
+
+// check si le formulaire est valide à chaque onChange
+Object.values(formElements).forEach((input) => {
+  input.addEventListener("change", validateForm);
+});
 
 if (formIsValid) {
   submitBtn.disabled = false;
-
-  // ajouter confirmation quand le submit est réussi
   formContainer.addEventListener("submit", (e) => {
     e.preventDefault();
     modalbg.style.display = "none";
     formConfirmationModal.style.display = "block";
   });
 } else {
+  submitBtn.disabled = true;
   formErrorMsg.textContent = "Le formulaire d'inscription n'est pas valide";
 }
-// TODO: add error msg if form is not valid
+
+console.log(formIsValid);
+
 // TODO: add form validation for each input
 // TODO: save form data if validation fails
 
@@ -59,3 +72,14 @@ closeConfirmationModalBtn.addEventListener(
   "click",
   () => (formConfirmationModal.style.display = "none")
 );
+
+// ajoute ou suppr la classe "responsive" pour le menu de navigation
+function editNav() {
+  const x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+burgerMenuBtn.addEventListener("click", editNav);
