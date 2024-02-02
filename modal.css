@@ -72,7 +72,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   .topnav a {
     display: none;
   }
@@ -81,7 +81,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   .topnav.responsive {
     position: relative;
   }
@@ -94,16 +94,6 @@ img {
     float: none;
     display: block;
     text-align: left;
-  }
-}
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    display: block;
-    margin-top: -15px;
   }
 }
 
@@ -417,8 +407,8 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  height: 657px;
-  min-width: 1240px;
+  max-height: 657px;
+  max-width: 1240px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -492,10 +482,15 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
 @media screen and (max-width: 800px) {
+  body {
+    padding: 20px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
+    max-height: none;
   }
   .hero-content {
     background: #fff;
@@ -509,7 +504,7 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     white-space: normal;
   }
   .hero-text {
@@ -529,6 +524,12 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
+  .main-navbar ul {
+    flex-direction: column;
+  }
+  .topnav.responsive .main-navbar {
+    width: 90%;
+  }
 }
 
 @keyframes modalopen {
@@ -538,6 +539,21 @@ footer {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    display: block;
+  }
+  .hero-content {
+    min-width: 0px;
+  }
+  .header-logo img {
+    width: 80%;
   }
 }
 

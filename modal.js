@@ -170,10 +170,13 @@ closeConfirmationModalBtn.addEventListener(
 // ajoute ou suppr la classe "responsive" pour le menu de navigation
 function editNav() {
   const x = document.getElementById("myTopnav");
+  const headerLogo = document.querySelector(".header-logo");
   if (x.className === "topnav") {
     x.className += " responsive";
+    headerLogo.style.display = "none";
   } else {
     x.className = "topnav";
+    headerLogo.style.display = "block";
   }
 }
 burgerMenuBtn.addEventListener("click", editNav);
