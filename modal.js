@@ -28,9 +28,10 @@ const formInputs = {
   email: document.getElementById("email"),
   birthdate: document.getElementById("birthdate"),
   quantity: document.getElementById("quantity"),
-  location: document.querySelector('input[name="location"]'),
   terms: document.getElementById("checkbox1"),
 };
+
+const locationInputs = document.querySelectorAll("input[name='location']");
 
 /** ------------------------ FORM REGEXP ------------------------ **/
 const nameRegExp = new RegExp(`^(?=.{2,25}$)[a-zA-Z]+(?:[-\s][a-z]+)*$`);
@@ -101,13 +102,15 @@ formInputs.quantity.addEventListener("input", validateQuantityInput);
 
 // validate location
 function validateLocationInput() {
-  if (!formInputs.location.checked)
+  if (!Array.from(locationInputs).some((input) => input.checked))
     return (locationErrorMsg.textContent = errorMsg.location);
   else {
     return (locationErrorMsg.textContent = "");
   }
 }
-formInputs.location.addEventListener("change", validateLocationInput);
+locationInputs.forEach((input) =>
+  input.addEventListener("change", validateLocationInput)
+);
 
 // validate terms
 function validateTermsInput() {
@@ -123,12 +126,11 @@ formInputs.terms.addEventListener("change", validateTermsInput);
 let formIsValid = false;
 submitBtn.disabled = true;
 
-// TODO: add checkbox validation & location validation
 function validateForm() {
   // check tous les inputs de l'objet et return true si tous les inputs sont pas vides
   formIsValid =
     Object.values(formInputs).every((input) => input.value !== "") &&
-    formInputs.location.checked &&
+    Array.from(locationInputs).some((input) => input.checked) &&
     formInputs.terms.checked;
 
   if (formIsValid) {
@@ -145,7 +147,7 @@ function validateForm() {
 
 // check si le formulaire est valide à chaque onChange
 Object.values(formInputs).forEach((input) => {
-  input.addEventListener("input", validateForm);
+  input.addEventListener("change", validateForm);
 });
 
 /** ------------------------ HANDLING MODALS ------------------------ **/
