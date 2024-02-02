@@ -26,32 +26,32 @@ const formInputs = {
 /** ------------------------ FORM VALIDATION ------------------------ **/
 let formIsValid = false;
 
-// TODO: logique à retravailler
 function validateForm() {
   // check tous les inputs de l'objet et return true si tous les inputs sont pas vides
   formIsValid = Object.values(formInputs).every((element) => {
     if (element.value !== "") return true;
   });
+
+  if (formIsValid) {
+    formErrorMsg.textContent = "";
+    submitBtn.disabled = false;
+    formContainer.addEventListener("submit", (e) => {
+      e.preventDefault();
+      modalbg.style.display = "none";
+      formConfirmationModal.style.display = "block";
+    });
+  } else {
+    submitBtn.disabled = true;
+    formErrorMsg.textContent = "Le formulaire d'inscription n'est pas valide";
+  }
+
+  console.log(formIsValid);
 }
 
 // check si le formulaire est valide à chaque onChange
 Object.values(formInputs).forEach((input) => {
   input.addEventListener("change", validateForm);
 });
-
-if (formIsValid) {
-  submitBtn.disabled = false;
-  formContainer.addEventListener("submit", (e) => {
-    e.preventDefault();
-    modalbg.style.display = "none";
-    formConfirmationModal.style.display = "block";
-  });
-} else {
-  submitBtn.disabled = true;
-  formErrorMsg.textContent = "Le formulaire d'inscription n'est pas valide";
-}
-
-console.log(formIsValid);
 
 // TODO: add form validation for each input
 // TODO: save form data if validation fails
