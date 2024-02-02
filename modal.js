@@ -26,6 +26,7 @@ const formInputs = {
 /** ------------------------ FORM VALIDATION ------------------------ **/
 let formIsValid = false;
 
+// TODO: add checkbox validation & location validation
 function validateForm() {
   // check tous les inputs de l'objet et return true si tous les inputs sont pas vides
   formIsValid = Object.values(formInputs).every((element) => {
