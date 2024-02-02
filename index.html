@@ -94,6 +94,7 @@
                   id="firstName"
                   name="firstName"
                 />
+                <span id="firstNameErrorMsg" class="error-msg"></span>
               </div>
               <div class="formData">
                 <label for="lastName">Nom</label>
@@ -103,6 +104,7 @@
                   id="lastName"
                   name="lastName"
                 />
+                <span id="lastNameErrorMsg" class="error-msg"></span>
               </div>
               <div class="formData">
                 <label for="email">E-mail</label>
@@ -112,6 +114,7 @@
                   id="email"
                   name="email"
                 />
+                <span id="emailErrorMsg" class="error-msg"></span>
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label>
@@ -121,6 +124,7 @@
                   id="birthdate"
                   name="birthdate"
                 />
+                <span id="birthdateErrorMsg" class="error-msg"></span>
               </div>
               <div class="formData">
                 <label for="quantity"
@@ -133,6 +137,7 @@
                   id="quantity"
                   name="quantity"
                 />
+                <span id="quantityErrorMsg" class="error-msg"></span>
               </div>
               <p class="text-label">
                 A quel tournoi souhaitez-vous participer cette année ?
@@ -204,6 +209,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <span id="locationErrorMsg" class="error-msg"></span>
               </div>
 
               <div class="formData">
@@ -212,6 +218,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <span id="termsErrorMsg" class="error-msg"></span>
 
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -219,7 +226,6 @@
                   Je souhaite être prévenu des prochains évènements.
                 </label>
               </div>
-              <span id="formNotValid" class="error-msg"></span>
               <button class="button btn-submit" type="submit" id="submitBtn">
                 C'est parti
               </button>
