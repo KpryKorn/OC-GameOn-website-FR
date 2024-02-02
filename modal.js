@@ -15,7 +15,7 @@ const closeConfirmationModalBtn = document.getElementById(
 const submitBtn = document.getElementById("submitBtn");
 
 /** ------------------------ FORM DATA VALUES ------------------------ **/
-const formElements = {
+const formInputs = {
   firstName: document.getElementById("firstName"),
   lastName: document.getElementById("lastName"),
   email: document.getElementById("email"),
@@ -28,14 +28,14 @@ let formIsValid = false;
 
 // TODO: logique à retravailler
 function validateForm() {
-  // check tous les éléments de l'objet formElements et return true si tous les inputs sont pas vides
-  formIsValid = Object.values(formElements).every((element) => {
+  // check tous les inputs de l'objet et return true si tous les inputs sont pas vides
+  formIsValid = Object.values(formInputs).every((element) => {
     if (element.value !== "") return true;
   });
 }
 
 // check si le formulaire est valide à chaque onChange
-Object.values(formElements).forEach((input) => {
+Object.values(formInputs).forEach((input) => {
   input.addEventListener("change", validateForm);
 });
 
