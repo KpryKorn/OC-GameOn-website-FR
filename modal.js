@@ -139,6 +139,7 @@ function validateForm() {
       e.preventDefault();
       modalbg.style.display = "none";
       formConfirmationModal.style.display = "block";
+      Object.values(formInputs).forEach((input) => (input.value = ""));
     });
   } else {
     submitBtn.disabled = true;
