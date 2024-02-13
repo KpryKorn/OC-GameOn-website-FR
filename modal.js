@@ -39,7 +39,6 @@ const nameRegExp = new RegExp(`^(?=.{2,25}$)[a-zA-Z]+(?:[-\s][a-z]+)*$`);
 const emailRegExp = new RegExp(
   `^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$`
 );
-const birthdateRegExp = new RegExp(`/^\d{2}\/\d{2}\/\d{4}$/`);
 
 /** ------------------------ FORM ERROR MSG ------------------------ **/
 const errorMsg = {
@@ -86,7 +85,7 @@ formInputs.email.addEventListener("change", validateEmailInput);
 function validateBirthdateInput() {
   const birthdate = formInputs.birthdate.value;
 
-  if (!birthdateRegExp.test(birthdate) || birthdate === "") {
+  if (birthdate === "") {
     return (birthdateErrorMsg.textContent = errorMsg.birthdate);
   } else {
     return (birthdateErrorMsg.textContent = "");
@@ -128,31 +127,34 @@ formInputs.terms.addEventListener("change", validateTermsInput);
 
 /** ------------------------ FORM VALIDATION ------------------------ **/
 let formIsValid = false;
-submitBtn.disabled = true;
 
 function validateForm() {
-  // check tous les inputs de l'objet et return true si tous les inputs sont pas vides
+  validateFirstNameInput();
+  validateLastNameInput();
+  validateEmailInput();
+  validateBirthdateInput();
+  validateQuantityInput();
+  validateLocationInput();
+  validateTermsInput();
+
   formIsValid =
     Object.values(formInputs).every((input) => input.value !== "") &&
     Array.from(locationInputs).some((input) => input.checked) &&
-    formInputs.terms.checked;
-
-  if (formIsValid) {
-    submitBtn.disabled = false;
-    formContainer.addEventListener("submit", (e) => {
-      e.preventDefault();
-      modalbg.style.display = "none";
-      formConfirmationModal.style.display = "block";
-      Object.values(formInputs).forEach((input) => (input.value = ""));
-    });
-  } else {
-    submitBtn.disabled = true;
-  }
+    formInputs.terms.checked &&
+    formInputs.birthdate.value !== "";
 }
 
-// check si le formulaire est valide à chaque onChange
-Object.values(formInputs).forEach((input) => {
-  input.addEventListener("change", validateForm);
+formContainer.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  validateForm();
+
+  // reset form
+  if (formIsValid) {
+    modalbg.style.display = "none";
+    formConfirmationModal.style.display = "block";
+    formContainer.reset();
+  }
 });
 
 /** ------------------------ HANDLING MODALS ------------------------ **/
