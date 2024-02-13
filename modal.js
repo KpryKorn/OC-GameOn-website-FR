@@ -30,6 +30,7 @@ const formInputs = {
   quantity: document.getElementById("quantity"),
   terms: document.getElementById("checkbox1"),
 };
+console.log(formInputs.birthdate.value);
 
 const locationInputs = document.querySelectorAll("input[name='location']");
 
@@ -38,6 +39,7 @@ const nameRegExp = new RegExp(`^(?=.{2,25}$)[a-zA-Z]+(?:[-\s][a-z]+)*$`);
 const emailRegExp = new RegExp(
   `^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$`
 );
+const birthdateRegExp = new RegExp(`/^\d{2}\/\d{2}\/\d{4}$/`);
 
 /** ------------------------ FORM ERROR MSG ------------------------ **/
 const errorMsg = {
@@ -45,7 +47,7 @@ const errorMsg = {
   lastName: "Le champ du nom n'est pas valide ou incomplet",
   email: "Le champ de l'email n'est pas valide ou incomplet",
   birthdate: "La date de naissance n'est pas valide ou incomplète",
-  quantity: "Veuillez indiquer le nombre de tournois",
+  quantity: "Le nombre de tournois indiqué n'est pas valide",
   location: "Veuillez sélectionner une ville",
   terms: "Vous devez accepter les conditions d'utilisation",
 };
@@ -82,9 +84,11 @@ formInputs.email.addEventListener("change", validateEmailInput);
 
 // validate birthdate
 function validateBirthdateInput() {
-  if (formInputs.birthdate.value === "")
+  const birthdate = formInputs.birthdate.value;
+
+  if (!birthdateRegExp.test(birthdate) || birthdate === "") {
     return (birthdateErrorMsg.textContent = errorMsg.birthdate);
-  else {
+  } else {
     return (birthdateErrorMsg.textContent = "");
   }
 }
@@ -92,7 +96,7 @@ formInputs.birthdate.addEventListener("change", validateBirthdateInput);
 
 // validate quantity
 function validateQuantityInput() {
-  if (formInputs.quantity.value === "")
+  if (formInputs.quantity.value === "" || formInputs.quantity.value < 0)
     return (quantityErrorMsg.textContent = errorMsg.quantity);
   else {
     return (quantityErrorMsg.textContent = "");
